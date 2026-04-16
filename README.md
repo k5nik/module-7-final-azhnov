@@ -64,7 +64,7 @@ max_depth = 8 / 10 / 12
 
 ## Скриншоты выполнения задания
 **1.  Активные ClearML и Airflow**
-![Активные ClearML и Airflow](images\image1.png)
+![Активные ClearML и Airflow](images/image1.png)
 **2. Активные ClearML Agent**
 ![Активные ClearML Agent](images\image2.png)
 **3. DAG в UI Airflow**
