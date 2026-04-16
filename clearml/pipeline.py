@@ -134,9 +134,7 @@ def select_best(
     }
 
 
-# ---------------------------
 # Создание PipelineController
-# ---------------------------
 pipe = PipelineController(
     name=PIPELINE_NAME,
     project=PROJECT_NAME,
