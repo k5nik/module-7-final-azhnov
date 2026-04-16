@@ -13,15 +13,15 @@ PROJECT_NAME = "mlops"
 PIPELINE_NAME = "Train taxi fare models"
 PIPELINE_VERSION = "0.0.1"
 
-QUEUE_NAME = "default"  
+QUEUE_NAME = "default"  # замени на свою очередь, если она называется иначе
 DATASET_PATH = "s3://r-mlops-bucket-8-1-4-35446443/processed/processed_uber.csv"
 S3_ENDPOINT_URL = "https://storage.yandexcloud.net"
 
 
 # Загрузка и подготовка данных
-def load_data(dataset_path):
+def load_data(dataset_path, s3_endpoint_url):
     storage_options = {
-        "client_kwargs": {"endpoint_url": S3_ENDPOINT_URL}
+        "client_kwargs": {"endpoint_url": s3_endpoint_url}
     }
 
     df = pd.read_csv(dataset_path, storage_options=storage_options)
@@ -145,11 +145,17 @@ pipe = PipelineController(
 # Все шаги по умолчанию идут в очередь агентов
 pipe.set_default_execution_queue(default_execution_queue=QUEUE_NAME)
 
-# Параметр пайплайна: путь до подготовленного датасета
+# Параметры пайплайна
 pipe.add_parameter(
     name="dataset_path",
     description="Path to processed taxi dataset",
     default=DATASET_PATH,
+)
+
+pipe.add_parameter(
+    name="s3_endpoint_url",
+    description="S3 endpoint URL",
+    default=S3_ENDPOINT_URL,
 )
 
 # Загрузка данных
@@ -157,7 +163,8 @@ pipe.add_function_step(
     name="load_data",
     function=load_data,
     function_kwargs=dict(
-        dataset_path="${pipeline.dataset_path}"
+        dataset_path="${pipeline.dataset_path}",
+        s3_endpoint_url="${pipeline.s3_endpoint_url}",
     ),
     function_return=["splitted_data"],
     docker="python:3.12-slim",
@@ -172,6 +179,7 @@ pipe.add_function_step(
 )
 
 # Обучение трех моделей с разными гиперпараметрами
+# Все они зависят только от load_data, значит могут выполняться параллельно
 pipe.add_function_step(
     name="train_rf_small",
     function=train_rf_model,
