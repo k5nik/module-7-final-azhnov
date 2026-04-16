@@ -1,0 +1,12 @@
+[project]
+name = "module-7-final-azhnov"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "clearml[s3]==2.0.2",
+    "pandas==2.3.2",
+    "ruff==0.12.11",
+    "scikit-learn==1.7.1",
+]
