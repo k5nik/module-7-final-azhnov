@@ -66,15 +66,15 @@ max_depth = 8 / 10 / 12
 **1.  Активные ClearML и Airflow**
 ![Активные ClearML и Airflow](images/image1.png)
 **2. Активные ClearML Agent**
-![Активные ClearML Agent](images\image2.png)
+![Активные ClearML Agent](images/image2.png)
 **3. DAG в UI Airflow**
-![DAG в UI Airflow](images\image3.png)
+![DAG в UI Airflow](images/image3.png)
 **4. Пайплайн в ClearML UI**
-![Пайплайн в ClearML UI](images\image4.png)
+![Пайплайн в ClearML UI](images/image4.png)
 **5. Параллельный запуск экспериментов**
 (Не очень понял, какой именно нужен тут скриншот. Параллельность видна из DAG в UI, см п. 4. Агент поднимает под под таску.) 
-![Параллельный запуск экспериментов](images\image5.png)
+![Параллельный запуск экспериментов](images/image5.png)
 **6. Выбранная лучшая модель**
-![Выбранная лучшая модель](images\image6.png)
+![Выбранная лучшая модель](images/image6.png)
 **7. Содержимое S3 с сохраненной моделью**
-![Содержимое S3 с сохраненной моделью](images\image7.png)
+![Содержимое S3 с сохраненной моделью](images/image7.png)
